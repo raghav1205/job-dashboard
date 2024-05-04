@@ -1,19 +1,31 @@
 import { useState, useEffect } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { cacheData, filterData } from "../dataSlice";
 
 export const useFetch = (url: string, requestOptions: any, requestBody: any) => {
+
     const [data, setData] = useState<any>(jobsArray);
     const [loading, setLoading] = useState<boolean>(false);
 
+    const dispatch = useDispatch();
+    const items = useSelector((state: any) => state.data.items);
+    console.log(items)
 
-    // useEffect(() => {
-    //     fetch(url, {...requestOptions, body: JSON.stringify(requestBody)})
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             setData(data);
-    //             setLoading(false);
-    //         });
-    // }, [url]);
+    useEffect(() => {
+        if (items.length === 0) {
+            fetch(url, { ...requestOptions, body: JSON.stringify(requestBody) })
+                .then((res) => res.json())
+                .then((data) => {
+                    setData(data);
+                    dispatch(cacheData(data));
+                    setLoading(false);
+                });
+        }
+        else{
+            setData(items);
+            setLoading(false);
+        }
+    }, [url]);
 
     return { data, loading };
 };
