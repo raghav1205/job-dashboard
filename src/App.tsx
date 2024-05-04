@@ -1,34 +1,40 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useFetch } from './hooks/useFetch'
+import JobCard from './components/JobCard';
+import { Grid, Box, Container } from '@mui/material';
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [requestBody] = useState({
+    "limit": 10,
+    "offset": 0
+  })
+
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: requestBody
+  };
+
+
+
+  const { data } = useFetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions, requestBody)
+  // console.log(data)
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Box display="flex" justifyContent="center" alignItems="center" width="100%">
+        <Grid container spacing={2} justifyContent="center">
+          {data.map((job: any) => (
+            <Grid item xs={12} sm={12} md={4} key={job.id}>
+              <JobCard />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </Container>
   )
 }
 
