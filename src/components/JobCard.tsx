@@ -10,7 +10,7 @@ interface JobCardProps {
     job: Job
 }
 function JobCard({ job }: JobCardProps) {
-    console.log('rednering job card')
+    // console.log('rednering job card')
 
 
     return (
@@ -37,7 +37,7 @@ function JobCard({ job }: JobCardProps) {
                 />
                 <Box>
                     <Typography component="div" sx={{ fontWeight: 'bold', color: 'gray' }}>
-                        {job.jobRole} at {job.companyName}
+                        {job.companyName}
                     </Typography>
                     <Typography variant='subtitle2' component="div">
                         {job.jobRole}
@@ -49,7 +49,7 @@ function JobCard({ job }: JobCardProps) {
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', px: 2, py: 0 }}>
                 <Typography>
-                    {job.minJdSalary ? `Salary: ${job.minJdSalary} to ${job.maxJdSalary} ${job.salaryCurrencyCode}` : `Salary: Up to ${job.maxJdSalary} ${job.salaryCurrencyCode}`}
+                    {job.minJdSalary ? `Estimated Salary: ${job.minJdSalary} to ${job.maxJdSalary} ${job.salaryCurrencyCode}` : `Salary: Up to ${job.maxJdSalary} ${job.salaryCurrencyCode}`}
                 </Typography>
             </Box>
             <CardContent>
