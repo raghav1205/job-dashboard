@@ -6,7 +6,7 @@ interface Filters {
     experience: number;
     techStack: string[];
     basePay: number;
-    workMode: string[];
+    workMode: string;
     companyName: string;
     [key: string]: string[] | number | string;
 }
@@ -30,7 +30,7 @@ const initialState: DataState = {
         jobRole: [],
         techStack: [],
         basePay: 0,
-        workMode: [],
+        workMode: '',
         companyName: '',
 
     },
@@ -55,7 +55,7 @@ const dataSlice = createSlice({
                 (!state.filters.experience || state.filters.experience === item.minExp) &&
                 // (!state.filters.techStack.length || state.filters.techStack.includes(item.techStack)) &&
                 (!state.filters.basePay || state.filters.basePay <= (item?.minJdSalary ?? 0)) &&
-                (!state.filters.workMode.length || state.filters.workMode.includes(item.location)) &&
+                (!state.filters.workMode.length || item.location.toLowerCase().includes(state.filters.workMode.toLowerCase())) &&
                 (!state.filters.companyName || item.companyName.toLowerCase().includes(state.filters.companyName.toLowerCase()))
             );
             console.log(state.filteredItems)

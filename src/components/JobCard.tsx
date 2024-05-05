@@ -4,6 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, Grid } from '@mui/material';
 import { Job } from '../types/Job';
+import { useState } from 'react';
 
 
 interface JobCardProps {
@@ -11,7 +12,7 @@ interface JobCardProps {
 }
 function JobCard({ job }: JobCardProps) {
     // console.log('rednering job card')
-
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     return (
         <Card sx={{
@@ -52,18 +53,29 @@ function JobCard({ job }: JobCardProps) {
                     {job.minJdSalary ? `Estimated Salary: ${job.minJdSalary} to ${job.maxJdSalary} ${job.salaryCurrencyCode}` : `Salary: Up to ${job.maxJdSalary} ${job.salaryCurrencyCode}`}
                 </Typography>
             </Box>
-            <CardContent>
+            <CardContent >
                 <Typography variant="subtitle1" color="text.secondary" sx={{ fontWeight: 'bold', color: 'gray' }}>
                     About Company:
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {job.jobDetailsFromCompany}
+                    {isExpanded || job.jobDetailsFromCompany.length <= 600 ? job.jobDetailsFromCompany : `${job.jobDetailsFromCompany.slice(0, 600)}...`}
                 </Typography>
+                {job.jobDetailsFromCompany.length > 700 && (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <Button onClick={() => {
+                            setIsExpanded(!isExpanded);
+                        }}
+                            sx={{ textTransform: 'none', color: 'blue', fontSize: 'small', mx: 'auto', alignContent: 'center' }}
+                        >
+                            {isExpanded ? 'Show less' : 'Show more'}
+                        </Button>
+                    </Box>
+                )}
 
 
-                <Box sx={{ mt: 1 }}>
-                    <Button href={job.jdLink} target="_blank" rel="noopener">
-                        Apply Here
+                <Box sx={{ mt: 1, display: 'flex' , justifyContent: 'center'}}>
+                    <Button href={job.jdLink} target="_blank" rel="noopener" variant='contained' sx={{width:'100%', py:'1.5'}}>
+                        Easy Apply
                     </Button>
                 </Box>
             </CardContent>

@@ -30,7 +30,7 @@ export default function JobFilters() {
 
 
     return (
-        <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', width: 'full' }}>
+        <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', width: 'full', mt: '2rem', mb: '2.5rem' }}>
             <FormControl sx={{ minWidth: 120, maxWidth: 'fit-content' }}>
                 <InputLabel>Roles</InputLabel>
                 <Select
@@ -103,8 +103,8 @@ export default function JobFilters() {
                             dispatch(setFilter({ filterType: 'workMode', value: '' }))
                         } else {
                             dispatch(setFilter({ filterType: 'workMode', value: e.target.value }))
-                            dispatch(applyFilters())
                         }
+                        dispatch(applyFilters())
                     }}
                 >
                     <MenuItem value="any">Any</MenuItem>
@@ -141,7 +141,7 @@ export default function JobFilters() {
             </FormControl>
 
             <FormControl sx={{ minWidth: 120, maxWidth: 200 }}>
-                <TextField variant="outlined" placeholder='Company' value = {company} onChange={
+                <TextField variant="outlined" placeholder='Company' value={company} onChange={
                     (e) => {
                         console.log(e.target.value)
                         setCompany(e.target.value)
