@@ -58,7 +58,7 @@ const dataSlice = createSlice({
                 (!state.filters.workMode.length || item.location.toLowerCase().includes(state.filters.workMode.toLowerCase())) &&
                 (!state.filters.companyName || item.companyName.toLowerCase().includes(state.filters.companyName.toLowerCase()))
             );
-            console.log(state.filteredItems)
+            // console.log(state.filteredItems)
         },
     },
 });

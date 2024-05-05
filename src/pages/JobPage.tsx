@@ -26,7 +26,7 @@ function JobPage() {
 
 
     const { data } = useFetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions, requestBody)
-    console.log(data, 'in job page')
+    // console.log(data, 'in job page')
     return (
         <Container style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
             <JobFilters />

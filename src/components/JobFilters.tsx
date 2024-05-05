@@ -1,9 +1,7 @@
-import { Box, FormControl, InputLabel, Select, MenuItem, Chip, SelectChangeEvent, Input, TextField, stepConnectorClasses } from '@mui/material';
-import { useEffect, useState } from 'react'
+import { Box, FormControl, InputLabel, Select, MenuItem, Chip, SelectChangeEvent,  TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { applyFilters, setFilter } from '../dataSlice';
-import CancelIcon from '@mui/icons-material/Cancel';
-import { Search } from '@mui/icons-material';
+import { useState } from 'react';
 
 export default function JobFilters() {
     const [role, setRole] = useState<string[]>([]);
