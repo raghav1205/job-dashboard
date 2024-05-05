@@ -58,9 +58,9 @@ function JobCard({ job }: JobCardProps) {
                     About Company:
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {isExpanded || job.jobDetailsFromCompany.length <= 600 ? job.jobDetailsFromCompany : `${job.jobDetailsFromCompany.slice(0, 600)}...`}
+                    {isExpanded || job?.jobDetailsFromCompany?.length <= 600 ? job?.jobDetailsFromCompany : `${job?.jobDetailsFromCompany?.slice(0, 600)}...`}
                 </Typography>
-                {job.jobDetailsFromCompany.length > 700 && (
+                {job?.jobDetailsFromCompany?.length > 700 && (
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Button onClick={() => {
                             setIsExpanded(!isExpanded);

@@ -2,14 +2,17 @@
 import JobPage from './pages/JobPage';
 import { Provider } from 'react-redux';
 import store from './store';
+import { StrictMode } from 'react';
 
 function App() {
 
-  
+
   return (
-    <Provider store={store}>
-      <JobPage />
-    </Provider>
+    <StrictMode>
+      <Provider store={store}>
+        <JobPage />
+      </Provider>
+    </StrictMode>
   )
 }
 
